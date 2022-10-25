@@ -1,0 +1,22 @@
+.div-navBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    font-size: 19px;
+    font-weight: 500;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.div-button {
+    display: flex;
+    justify-content: center;
+
+}
+
+.div-button Button {
+    padding: 5px;
+}
