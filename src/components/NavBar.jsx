@@ -1,17 +1,17 @@
-import Button from "./Button/Button";
 import "./navBar.css";
 import CartWidget from "./CartWidget/CartWidget";
+import { Link } from "react-router-dom";
 
 function NavBar () {
     return (
         <div className="div-navBar">
-            <a href="#">LOGO</a>
-            <div className="div-button">
-                <Button color="red">Productos A</Button>
-                <Button color="green">Productos B</Button>
-                <Button color="orange">Productos C</Button>
+            <Link to="/" className="logo"><img src="/img/logo.jpg" alt="logo" /></Link>
+            <div className="div-link">
+                <Link to="/">Cerraduras</Link>
+                <Link to="/">Bisagras</Link>
+                <Link to="/detalle">Detalle</Link>
             </div>
-            <button><CartWidget /></button>
+            <Link to="/" className="img-carrito"><CartWidget /></Link>
         </div>
     );
 }
