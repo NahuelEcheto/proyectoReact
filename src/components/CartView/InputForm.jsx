@@ -2,7 +2,7 @@ import React from "react";
 
 function InputForm(props) {
   return (
-    <div className="d-flex justify-content-between">
+    <div>
       <label className="form-label">{props.title}</label>
       <input
       className="form-control"

@@ -73,8 +73,8 @@ function CartView() {
             </div>
         ))}
         <div className="total-price">
+        <h2>Total a pagar: ${totalPriceInCart()}</h2>
           <Button type="btn-agregar" onClick={clear}>Vaciar carrito</Button>
-          <h2>Total a pagar: ${totalPriceInCart()}</h2>
         </div>
         <BuyForm onSubmit={createBuyOrder} />
     </div>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import InputForm from "./InputForm";
+import Button from "../Button/Button";
+import "./cartView.css";
 
 export default function BuyForm(props) {
   const [userData, setUserData] = useState({
@@ -26,34 +28,47 @@ export default function BuyForm(props) {
   }
 
   return (
+    <div className="formulario-venta">
+        <h1>Completar el formulario</h1>
+        <p>Completa el siguiente formulario para terminar la compra.</p>
     <form onSubmit={onSubmit} className="w-25 d-flex flex-column justify-content-center">
+      <div className="row mb-3">
       <InputForm
-        required="true"
+        required
         title="Nombre"
         name="name"
         type="text"
         value={userData.name}
         onInputChange={onInputChange}
       />
+      </div>
+      <div className="row mb-3">
       <InputForm
-        required="true"
+        required
         title="Email"
         name="email"
         type="email"
         value={userData.email}
         onInputChange={onInputChange}
-      />
+      />  
+      </div>
+      <div className="row mb-3">
       <InputForm
-        required="true"
+        required
         title="Teléfono"
         name="phone"
         type="text"
         value={userData.phone}
         onInputChange={onInputChange}
       />
+      </div>
 
-      <button onClick={onSubmit}>Enviar formulario</button>
+
+
+
+      <Button onClick={onSubmit}>Finalizar compra</Button>
     </form>
+    </div>
   );
 }
 
