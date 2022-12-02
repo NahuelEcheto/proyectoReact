@@ -1,32 +1,43 @@
 import React, {useState, useEffect} from "react";
-import { getOneItem } from "../../mockService/mockService.js";
+import ItemDetail from "./ItemDetail";
+import { getOneItem } from "../../services/firebase";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import FlexWrapp from "../FlexWrapp/FlexWrapp";
 
 
 function ItemDetailContainer () {
     const [product, setProduct] = useState ([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [feedbackMsg, setFeedbackMsg] = useState(null);
 
-    let params = useParams();
-    let id = params.id;
+    let id = useParams().id;
 
     useEffect(() => {
-        getOneItem(id).then((product) => {
-            setProduct(product);
+        getOneItem(id).then((products) => {
+            setProduct(products);
         })
-        .catch((error) => alert(error));
-    }, []);
+        .catch((error) => {
+            setFeedbackMsg(`Error: ${error.message}`)
+        })
+        .finally(() => setIsLoading(false));
+    }, [id]);
+
+    if (isLoading) return (
+        < FlexWrapp>
+            <Loader color="grey" speed={1} size={40} />
+        </FlexWrapp>
+    )
 
     return (
-        <div className="card">
-            <div className="img-card">
-                <img src={product.thumbnail} alt="Imagen de producto" />
-            </div>
-            <div className="info-card">
-                <h2>{product.title}</h2>
-                <p>{product.detail}</p>
-                <h4 className="price-card">$ {product.price}</h4>
-            </div>
+        <div>
+            { feedbackMsg ? (
+                <span style={{backgroundColor: "red"}}>{feedbackMsg}</span>
+            ) : (
+                <ItemDetail product={product} /> 
+            )}
         </div>
+    
     );
 }
 

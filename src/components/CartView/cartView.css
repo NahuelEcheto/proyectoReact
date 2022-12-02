@@ -1,0 +1,32 @@
+.text-center {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.div-cartview {
+    color: white;
+}
+
+.div-cartview thead {
+    color: white;
+}
+
+.div-cartview tbody {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.178);
+}
+
+.div-cartview img {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+}
+
+.total-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 50px;
+    color: white;
+}

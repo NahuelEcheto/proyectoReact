@@ -3,22 +3,21 @@ import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Item.css";
 
-function Item(props) {
+function Item({ product }) {
 
-  let urlDetail = `/detalle/ ${props.id}`
+  let urlDetail = `/detalle/${product.id}`
 
   return (
-    <div className="card">
+    <div className="carta">
       <div className="img-card">
-        <img src={props.img} alt="Imagen de producto" />
+        <img src={product.thumbnail} alt="Imagen de producto" />
       </div>
       <div className="info-card">
-        <h2>{props.title}</h2>
-        <p>{props.detail}</p>
-        <h4 className="price-card">$ {props.price}</h4>
+        <h2>{product.title}</h2>
+        <h4 className="price-card">$ {product.price}</h4>
       </div>
       <Link to={urlDetail}>
-        <Button color="grey" textColor="white">Ver detalle</Button>
+        <Button type="detalle-carta">Ver detalle</Button>
       </Link>
     </div>
   )

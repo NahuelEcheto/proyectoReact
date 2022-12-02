@@ -1,29 +1,46 @@
 import React, {useState, useEffect} from "react";
 import ItemList from "./ItemList";
-import getItem, {getItemCategory} from "../../mockService/mockService.js";
 import { useParams } from "react-router-dom";
+import { getItem, getItemCategory } from "../../services/firebase";
+import FlexWrapp from "../FlexWrapp/FlexWrapp";
+import Loader from "../Loader/Loader";
 
 
 function ItemListContainer (props) {
     const [listaProducts, setListaProducts] = useState ([]);
-    const {categoryId} = useParams();
+    const [feedbackMsg, setFeedbackMsg] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const {category} = useParams();
 
     useEffect(() => {
-        if(categoryId) 
-            getItemCategory(categoryId).then((products) => {
+        setIsLoading(true);
+        if(category) 
+            getItemCategory(category)
+            .then((products) => {
                 setListaProducts(products);
-            });
+            })
+            .catch(error =>{
+                setFeedbackMsg(error.message)
+            })
+            .finally( () => setIsLoading(false))
         else{
-            getItem().then((products) => {
+            getItem()
+            .then((products) => {
                 setListaProducts(products);
-            });
+            })
+            .finally( () => setIsLoading(false))
         }
-    }, []);
+    }, [category]);
+
+    if (isLoading) return (
+        < FlexWrapp>
+            <Loader color="grey" speed={1} size={40} />
+        </FlexWrapp>
+    )
 
     return (
         <>
-            <h1>{props.greeting}</h1>
-            <ItemList listaProducts={listaProducts}/>
+            <ItemList feedbackMsg={feedbackMsg} listaProducts={listaProducts}/>
         </>
     );
 }

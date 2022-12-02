@@ -1,20 +1,25 @@
 import React from 'react';
+import FlexWrapp from '../FlexWrapp/FlexWrapp';
 import Item from "../Item/Item";
-import "./itemList.css";
+import Loader from '../Loader/Loader';
 
-function ItemList(props) {
+function ItemList(product) {
+
+    let emptyarray = product.listaProducts.length === 0;
+
     return (
-        <div className="item-list">
-            {props.listaProducts.map((product) => (
-                <Item
-                    key={product.id}
-                    detail={product.description}
-                    price={product.price}
-                    img={product.thumbnail}
-                    title={product.title}
-                />
-            ))}
-        </div>
+        <FlexWrapp>
+            {emptyarray ? 
+                product.feedbackMsg ?
+                    <span style={{backgroundColor: "red"}}>{product.feedbackMsg}</span>
+                    :
+                    <Loader color="white" speed={1} size={40} />
+             : 
+                product.listaProducts.map((product) => (
+                    <Item key={product.id} product={product} />
+                ))
+            }
+        </FlexWrapp>
     )
 }
 

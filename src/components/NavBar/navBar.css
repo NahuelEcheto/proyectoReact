@@ -1,33 +1,37 @@
-.div-navBar {
-    display: flex;
-    justify-content: space-between;
-    background-color: rgb(250, 181, 53);
-    height: 120px;
-}
-
-.logo img {
-    width: 100px;
-    height: 100px;
-}
-
 .div-link {
-    display: flex;
+    align-items: center;
     justify-content: center;
     padding: 5px;
 }
 
 .div-link a {
-    font-size: 20px;
+    text-align: center;
+    font-size: 30px;
     font-weight: 600;
     margin: 40px;
     text-decoration: none;
     color: white;
 }
 
+.div-link a:hover {
+    color: #FCD900;
+}
+
 .img-carrito {
+    flex-direction: row;
     text-decoration: none;
     color: white;
     font-size: 25px;
     margin: 5px;
     padding: 25px;
+    height: 90px;
+}
+
+.img-carrito:hover {
+    color: #FCD900;
+}
+
+.collapse {
+    justify-content: center;
+    align-items: center;
 }
